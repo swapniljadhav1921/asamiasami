@@ -46,7 +46,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
            }
         ```
     * BLEU Score Benchmark on Tatoeba DataSet
-        * indicTranslation : 49.07 [73.45, 55.02, 42.81, 33.51]
+        * indicTranslation : ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `49.07 [73.45, 55.02, 42.81, 33.51]`
         * Google : 47.44 [73.16, 53.63, 40.88, 31.58]
         * HuggingFace : 40.04
 * English-2-Hindi Translation Model
@@ -70,7 +70,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
            }
        ```
     * BLEU Score Benchmark on Tatoeba DataSet
-        * indicTranslation : 28.82 [61.37, 38.43, 25.62, 17.71]
+        * indicTranslation : ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+)`28.82 [61.37, 38.43, 25.62, 17.71]`
         * Google : 23.51 [51.52, 29.38, 18.07, 11.16]
         * HuggingFace : 16.1
 * Next Steps
