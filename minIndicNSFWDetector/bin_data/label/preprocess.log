@@ -1,0 +1,6 @@
+Namespace(align_suffix=None, alignfile=None, all_gather_list_size=16384, bf16=False, bpe=None, checkpoint_suffix='', cpu=False, criterion='cross_entropy', dataset_impl='mmap', destdir='bin_data/label/', empty_cache_freq=0, fp16=False, fp16_init_scale=128, fp16_no_flatten_grads=False, fp16_scale_tolerance=0.0, fp16_scale_window=None, joined_dictionary=False, log_format=None, log_interval=100, lr_scheduler='fixed', memory_efficient_bf16=False, memory_efficient_fp16=False, min_loss_scale=0.0001, model_parallel_size=1, no_progress_bar=False, nwordssrc=-1, nwordstgt=-1, only_source=True, optimizer='nag', padding_factor=8, profile=False, quantization_config_path=None, seed=None, source_lang=None, srcdict=None, target_lang=None, task='translation', tensorboard_logdir='', testpref=None, tgtdict=None, threshold_loss_scale=None, thresholdsrc=0, thresholdtgt=0, tokenizer=None, tpu=False, trainpref='raw_data/train.label', user_dir=None, validpref='raw_data/val.label', workers=48)
+[None] Dictionary: 8 types
+[None] raw_data/train.label: 10060771 sents, 20121542 tokens, 0.0% replaced by <unk>
+[None] Dictionary: 8 types
+[None] raw_data/val.label: 20000 sents, 40000 tokens, 0.0% replaced by <unk>
+Wrote preprocessed data to bin_data/label/
