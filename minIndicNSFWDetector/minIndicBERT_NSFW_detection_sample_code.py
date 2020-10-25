@@ -10,7 +10,7 @@ cls_arr = ['sfw', 'nsfw']
 
 text = """चिराग पासवान ने ट्वीट करके दावा किया कि चुनाव के बाद बिहार में नीतीश मुक्त सरकार बनेगी. उन्होंने कहा कि जनता नीतीश कुमार के राज से परेशान हो चुकी है. बीते 15 सालों में बिहार को बेरोजगारी, गरीबी, अशिक्षा के अलावा कुछ नहीं मिला."""
 tokens = roberta.encode(text)
-pred_arr = roberta.predict('nsfw_detect', tokens[:511]).detach().cpu().numpy().tolist()[0]
+pred_arr = roberta.predict('nsfw_detect', tokens[:511]).detach().cpu().numpy().tolist()[0] ### nsfw_detect is HEAD_NAME used in fine-tuning process
 pred_min = np.min(pred_arr)
 if pred_min < 0:
     pred_min = pred_min * -1.0
