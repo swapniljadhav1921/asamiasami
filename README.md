@@ -13,6 +13,12 @@ https://github.com/swapniljadhav1921/asamiasami
 For many years we had  performance & accuracy issues with multi-lingual unsupervised models  ... especially for Indian Languages.   For example, in Google's Multilingual BERT Indian language's content percentage is <10%. Similarly, for GPT-3 which is the latest in the bunch has <7% content in other than English language. Over the years, we experienced through experiments that more the data & accurate the data, better the model ... irrespective of how big the model is. Original attention model by Vaswani with more data & hyper-parameter tuning held up very well against state-of-the-art models like BERT, GPT-2. minIndicBERT is the results of the same experimentation. Hope to introduce more & more APIs for Indian Languages in coming months. 
 
 
+## Requirements
+* Python >=3.6
+* torch >=1.4
+* sentencepiece >=0.1.83
+* fairseq (https://github.com/pytorch/fairseq#requirements-and-installation)
+* Flask >=1.0
 
 ## indicTranslation
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation
@@ -73,12 +79,52 @@ For many years we had  performance & accuracy issues with multi-lingual unsuperv
 
 
 ## minIndicBERT
+* RoBERTa model & Sentence Tokenizer trained with just 4 encoders on 12+ Indian language data
+* Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
+* Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicBERT
+* How to start API => `bash rerun.sh PORT_NUM`
+* Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert/details
 * Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicBERT/minIndicBERT_sample_code.py
+* Model Traning Command (More details here => https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md )
+```
+CUDA_VISIBLE_DEVICES=0 fairseq-train --fp16 $DATA_DIR --task masked_lm --criterion masked_lm  --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 --encoder-ffn-embed-dim 1024 --encoder-attention-heads 8 --sample-break-mode complete --tokens-per-sample $TOKENS_PER_SAMPLE --optimizer adam --adam-betas '(0.9,0.98)' --adam-eps 1e-6 --clip-norm 0.0 --lr-scheduler polynomial_decay --lr $PEAK_LR --warmup-updates $WARMUP_UPDATES --total-num-update $TOTAL_UPDATES --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 --max-sentences $MAX_SENTENCES --update-freq $UPDATE_FREQ --max-update $TOTAL_UPDATES --log-format simple --log-interval 1 --skip-invalid-size-inputs-valid-test
+```
 
+### Process to Finetune 
+* More Details Here => https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md
+```
+TOTAL_NUM_UPDATES=1000000
+WARMUP_UPDATES=5000
+LR=1e-05
+HEAD_NAME=GIVE_SOME_UNIQ_NAME ### Later to be used in python code 
+NUM_CLASSES=2
+MAX_SENTENCES=64
+ROBERTA_PATH=/minIndicBERT/model/path/*.pt
+
+cd fairseq_installation_path
+
+CUDA_VISIBLE_DEVICES=0 python train.py /path/bin_data/ --restore-file $ROBERTA_PATH --max-positions 512 --max-sentences $MAX_SENTENCES  --max-tokens 32768 --task sentence_prediction --reset-optimizer --reset-dataloader --reset-meters --required-batch-size-multiple 1 --init-token 0 --separator-token 2 --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 --encoder-ffn-embed-dim 1024 --encoder-attention-heads 8 --criterion sentence_prediction --classification-head-name $HEAD_NAME --num-classes $NUM_CLASSES --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.1 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 --clip-norm 0.0 --lr-scheduler polynomial_decay --lr $LR --total-num-update $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 --max-epoch 16 --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric --find-unused-parameters  --update-freq 8 --skip-invalid-size-inputs-valid-test
+```
 
 ## minIndicLanguageDetector
+* RoBERTa model finetuned over minIndicBERT base model to detect language of a given text
+* Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
+* Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
+* API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicLanguageDetector
+* How to start API => `bash rerun.sh PORT_NUM`
+* Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert-language-detection/details
+* Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicLanguageDetector/minIndicBERT_Language_detection_sample_code.py
 
 
 ## minIndicNSFWDetector 
+* RoBERTa model finetuned over minIndicBERT base model to detect if given text is safe or not-safe for work.
+* Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
+* Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
+* API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicNSFWDetector
+* How to start API => `bash rerun.sh PORT_NUM`
+* Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert-nsfwdetection/details
+* Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicNSFWDetector/minIndicBERT_NSFW_detection_sample_code.py
+
+
 
