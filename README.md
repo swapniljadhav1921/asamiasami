@@ -127,7 +127,7 @@ CUDA_VISIBLE_DEVICES=0 python train.py /path/bin_data/ --restore-file $ROBERTA_P
 * Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicNSFWDetector/minIndicBERT_NSFW_detection_sample_code.py
 
 
-## Pay for my coffee if you like above models
+## Pay something for my Chai-Pani if you like above models
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/paypalme/swapniljadhav1921)
 
 
