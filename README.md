@@ -1,4 +1,3 @@
-# AsamiAsami
 
 ### Website
 https://asamiasami.in/
