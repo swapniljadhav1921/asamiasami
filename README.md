@@ -9,7 +9,7 @@ https://rapidapi.com/user/asamiasami2020
 ### Github Main Repo
 https://github.com/swapniljadhav1921/asamiasami
 
-Google's Multilingual BERT Indian language's content percentage is <10%. Similarly, for GPT-3 which is the latest in the bunch has <7% content in other than English language. Over the years through experiments we observed that more the data & accurate the data, better the model ... irrespective of how big the model is. Original attention model by Vaswani with more data & hyper-parameter tuning held up very well against state-of-the-art models like BERT, GPT-2. minIndicBERT is the results of the same experimentation.
+Google's Multilingual BERT is trained on Indian language's content having contribution <10%. Similarly, for GPT-3 which is the latest in the bunch has <7% content in other than English language. Over the years through experiments we observed that more the data & accurate the data, better the model ... irrespective of how big the model is. Original attention model by Vaswani with more data & hyper-parameter tuning held up very well against state-of-the-art models like BERT, GPT-2. minIndicBERT is the results of the same experimentation and trained only on Indian Languages specifically.
 
 
 ## Requirements
