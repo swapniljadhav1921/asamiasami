@@ -1,0 +1,12 @@
+Namespace(align_suffix=None, alignfile=None, all_gather_list_size=16384, bpe=None, checkpoint_suffix='', cpu=False, criterion='cross_entropy', dataset_impl='mmap', destdir='bin_data/input0', empty_cache_freq=0, fp16=False, fp16_init_scale=128, fp16_no_flatten_grads=False, fp16_scale_tolerance=0.0, fp16_scale_window=None, joined_dictionary=False, log_format=None, log_interval=100, lr_scheduler='fixed', memory_efficient_fp16=False, min_loss_scale=0.0001, model_parallel_size=1, no_progress_bar=False, nwordssrc=-1, nwordstgt=-1, only_source=True, optimizer='nag', padding_factor=8, quantization_config_path=None, seed=1, source_lang=None, srcdict=None, target_lang=None, task='translation', tensorboard_logdir='', testpref=None, tgtdict=None, threshold_loss_scale=None, thresholdsrc=0, thresholdtgt=0, tokenizer=None, trainpref='raw_data/train.text.bpe', user_dir=None, validpref='raw_data/val.text.bpe', workers=40)
+[None] Dictionary: 66343 types
+[None] raw_data/train.text.bpe: 6271238 sents, 175098561 tokens, 0.0% replaced by <unk>
+[None] Dictionary: 66343 types
+[None] raw_data/val.text.bpe: 10000 sents, 256240 tokens, 0.0% replaced by <unk>
+Wrote preprocessed data to bin_data/input0
+Namespace(align_suffix=None, alignfile=None, all_gather_list_size=16384, bpe=None, checkpoint_suffix='', cpu=False, criterion='cross_entropy', dataset_impl='mmap', destdir='bin_data/input0', empty_cache_freq=0, fp16=False, fp16_init_scale=128, fp16_no_flatten_grads=False, fp16_scale_tolerance=0.0, fp16_scale_window=None, joined_dictionary=False, log_format=None, log_interval=100, lr_scheduler='fixed', memory_efficient_fp16=False, min_loss_scale=0.0001, model_parallel_size=1, no_progress_bar=False, nwordssrc=-1, nwordstgt=-1, only_source=True, optimizer='nag', padding_factor=8, quantization_config_path=None, seed=1, source_lang=None, srcdict='bin_data/input0/dict.txt', target_lang=None, task='translation', tensorboard_logdir='', testpref=None, tgtdict=None, threshold_loss_scale=None, thresholdsrc=0, thresholdtgt=0, tokenizer=None, trainpref='raw_data/train.text.bpe', user_dir=None, validpref='raw_data/val.text.bpe', workers=40)
+[None] Dictionary: 66399 types
+[None] raw_data/train.text.bpe: 6271238 sents, 175098561 tokens, 0.615% replaced by <unk>
+[None] Dictionary: 66399 types
+[None] raw_data/val.text.bpe: 10000 sents, 256240 tokens, 0.409% replaced by <unk>
+Wrote preprocessed data to bin_data/input0
