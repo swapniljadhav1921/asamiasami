@@ -19,7 +19,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * Flask >=1.0
 
 ## Machine Instances Used
-* aws T4 single gpu instance - 16gb gpu
+* aws T4 single gpu instance - 16gb gpu (for hosting apis)
 * gtx 1070 - 8gb gpu
 * Ubuntu 16.04
 
