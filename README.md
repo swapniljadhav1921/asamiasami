@@ -31,6 +31,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 
 ## indicTranslation
 * Trained at sentence level. Process => text -> split in sentences -> translation.
+* English CASELESS text is used. It improves the model performance manyfold.
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation
 * Hindi-2-English Translation Model
     * Model Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation/hi_en_t2t_v3
