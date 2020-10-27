@@ -128,7 +128,6 @@ CUDA_VISIBLE_DEVICES=0 python train.py /path/bin_data/ --restore-file $ROBERTA_P
 ## minIndicLanguageDetector
 * RoBERTa model finetuned over minIndicBERT base model to detect language of a given text
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
-* Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicLanguageDetector
 * How to start API => `bash rerun.sh PORT_NUM`
 * Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert-language-detection/details
@@ -138,7 +137,6 @@ CUDA_VISIBLE_DEVICES=0 python train.py /path/bin_data/ --restore-file $ROBERTA_P
 ## minIndicNSFWDetector 
 * RoBERTa model finetuned over minIndicBERT base model to detect if given text is safe or not-safe for work.
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
-* Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicNSFWDetector
 * How to start API => `bash rerun.sh PORT_NUM`
 * Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert-nsfwdetection/details
