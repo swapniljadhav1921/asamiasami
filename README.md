@@ -34,6 +34,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * For running on cpu few code changes are required
     * `.cpu()` => This is not required and should be removed
     * `model.cuda()` => This is not required and should be removed
+* Repo download size will be ~24gb. It includes all model files .pt & traning binaries(Not required but given for enthusiastic people to run for more epochs).
 
 ## indicTranslation
 * Trained at sentence level. Process => text -> split in sentences -> translation.
