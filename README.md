@@ -29,6 +29,12 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * minIndicLanguageDetector - reviews/comments web scrapped, used transliteration to augment data
 * minIndicNSFWDetector - free datasets available for slangs
 
+## Note
+* It is assumed that gpu will be used while running any code shared in this repo.
+* For running on cpu few code changes are required
+    * `.cpu()` => This is not required and should be removed
+    * `model.cuda()` => This is not required and should be removed
+
 ## indicTranslation
 * Trained at sentence level. Process => text -> split in sentences -> translation.
 * English CASELESS text is used. It improves the model performance manyfold.
