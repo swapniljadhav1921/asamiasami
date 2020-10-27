@@ -30,6 +30,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * minIndicNSFWDetector - free datasets available for slangs
 
 ## indicTranslation
+* Trained at sentence level. Process => text -> split in sentences -> translation.
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation
 * Hindi-2-English Translation Model
     * Model Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation/hi_en_t2t_v3
