@@ -44,57 +44,41 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * Hindi-2-English Translation Model
     * Model Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation/hi_en_t2t_v3
     * Try out direct api here (same code as shared) => https://rapidapi.com/asamiasami2020/api/indictranslator-hindi-2-english/details
-    * Start your local api & Use
-        * `python app.py 0.0.0.0 8888 ./hi_en_t2t_v3/token_data/ ./hi_en_t2t_v3/checkpoints/checkpoint8.pt ./sentencepiece.bpe.model hi &`
-        * POST api url => `http://0.0.0.0:8888/get_translation`
-        * raw/json body => 
-        ```
-           {
-	             "text": "अपने करियर के 17 लिस्ट ए के मैचों में तारकाई ने 32.52 की औसत से 553 रन बनाए थे. इसके अलावा उन्होंने 33 टी-20 में उन्होंने 127.50 की स्ट्राइक रेट से 700 रन बनाए हैं. अफगानिस्तान के  
-                दिग्गज स्पिनर राशिद खान ने भी ट्वीट कर अपना रिएक्शन दिया है. अफगानिस्तान क्रिकेट के लिए तारकाई उभरते हुए क्रिकेटर थे, टी-20 में तारकाई ने 4 अर्धशतक भी जमाए थे. तारकाई ने 2014 में इंटरनेशनल 
-                क्रिकेट में डेब्यू किया था, अपने करियर में तराकाई ने 24 फर्स्ट क्लास मैच खेले और 2030 रन बनाए, फर्स्ट क्लास क्रिकेट में उनके नाम 6 शतक और 10 अर्धशतक शामिल है."
-           }
-        ```
-        * Output =>
-        ```
-           {
-                "outtext": "tarakai scored 553 runs in 17 list a matches of his career at an average of 32.52. apart from this, he has scored 700 runs in 33 t20is at a strike rate of 
-                127.50. afghanistan's legendary spinner rashid khan has also tweeted his reaction. tarakai was a rising cricketer for afghanistan cricket, tarakai also scored 4 half-
-                centuries in t20is. tarakai made his international debut in 2014, tarakai played 24 first class matches in his career and scored 2030 runs, first class cricket 
-                includes 6 centuries and 10 half-centuries to his name."
-           }
-        ```
+    * Run code locally => `python indicTranslation_sample_code.py`
     * BLEU Score Benchmark on Tatoeba DataSet
         * indicTranslation : ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `49.07 [73.45, 55.02, 42.81, 33.51]`
         * Google : 47.44 [73.16, 53.63, 40.88, 31.58]
         * HuggingFace : 40.04
+    * Example
+        ```
+        Text => अपने करियर के 17 लिस्ट ए के मैचों में तारकाई ने 32.52 की औसत से 553 रन बनाए थे. इसके अलावा उन्होंने 33 टी-20 में उन्होंने 127.50 की स्ट्राइक रेट से 700 रन बनाए हैं. अफगानिस्तान के  
+        दिग्गज स्पिनर राशिद खान ने भी ट्वीट कर अपना रिएक्शन दिया है. अफगानिस्तान क्रिकेट के लिए तारकाई उभरते हुए क्रिकेटर थे, टी-20 में तारकाई ने 4 अर्धशतक भी जमाए थे. तारकाई ने 2014 में इंटरनेशनल 
+        क्रिकेट में डेब्यू किया था, अपने करियर में तराकाई ने 24 फर्स्ट क्लास मैच खेले और 2030 रन बनाए, फर्स्ट क्लास क्रिकेट में उनके नाम 6 शतक और 10 अर्धशतक शामिल है.
+        
+        Translation => tarakai scored 553 runs in 17 list a matches of his career at an average of 32.52. apart from this, he has scored 700 runs in 33 t20is at a strike rate of 
+        127.50. afghanistan's legendary spinner rashid khan has also tweeted his reaction. tarakai was a rising cricketer for afghanistan cricket, tarakai also scored 4 half-
+        centuries in t20is. tarakai made his international debut in 2014, tarakai played 24 first class matches in his career and scored 2030 runs, first class cricket 
+        includes 6 centuries and 10 half-centuries to his name.
+        ```
+    
 * English-2-Hindi Translation Model
     * Model Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation/en_hi_t2t_v3
     * Try out direct api here (same code as shared) => https://rapidapi.com/asamiasami2020/api/indictranslator-english-2-hindi/details
-    * Start your local api & Use
-        * `python app.py 0.0.0.0 8899 ./en_hi_t2t_v3/token_data/ ./en_hi_t2t_v3/checkpoints/checkpoint9.pt ./sentencepiece.bpe.model en &`
-        * POST api url => `http://0.0.0.0:8899/get_translation`
-        * raw/json body => 
-        ```
-           {
-	             "text": "Google News is a news aggregator service developed by Google. It presents a continuous flow of articles organized from thousands of publishers and magazines. 
-                Google News is available as an app on Android, iOS, and the Web. Google released a beta version in September 2002 and the official app in January 2006."
-           }
-        ```
-        * Output =>
-        ```
-           {
-                "outtext": "गूगल न्यूज गूगल द्वारा विकसित एक न्यूज एग्रीगेटर सर्विस है। यह हजारों प्रकाशकों और पत्रिकाओं से आयोजित लेखों का निरंतर प्रवाह प्रस्तुत करता है। गूगल न्यूज एंड्रॉयड, आईओएस, और वेब पर 
-                ऐप के तौर पर उपलब्ध है। गूगल ने सितंबर 2002 में बीटा वर्जन और जनवरी 2006 में ऑफिशियल एप जारी किया था।",
-           }
-       ```
+    * Run code locally => `python indicTranslation_sample_code.py`
     * BLEU Score Benchmark on Tatoeba DataSet
         * indicTranslation : ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+)`28.82 [61.37, 38.43, 25.62, 17.71]`
         * Google : 23.51 [51.52, 29.38, 18.07, 11.16]
         * HuggingFace : 16.1
-* Next Steps
-    * `app.py` has the most basic code written. You can extend and make it more usable with more options.
-    * Command line model load & use
+    * Example
+        ```
+        Text => Over the last three months, the spread of the pandemic has shifted from cities towards rural areas, potentially threatening the agriculture sector which has been the 
+        one bright spot in the economy so far. At the end of June, 80% of the districts with more than 1,000 confirmed cases of COVID-19 were urban, while only 20% were rural. By the 
+        end of September, the ratio had morphed. Of districts with over 1,000 cases, 53% are now rural, according to data analysed by CRISIL Research.
+        
+        Translation => पिछले तीन महीनों में महामारी का प्रसार शहरों से ग्रामीण क्षेत्रों की ओर स्थानांतरित हो गया है, संभावित रूप से कृषि क्षेत्र को खतरा है जो अब तक अर्थव्यवस्था में एक उज्ज्वल स्थान रहा है। जून के अंत 
+        में कोविद 19 के 1,000 से अधिक पुष्ट मामलों वाले 80 फीसदी जिले शहरी थे, जबकि सिर्फ 20 फीसदी ग्रामीण थे। सितंबर के अंत तक अनुपात मॉर्फ्ड हो गया था। 1,000 से अधिक मामलों वाले जिलों में से 53% अब ग्रामीण 
+        हैं, जो कि क्रिस्पिल रिसर्च द्वारा विश्लेषण किए गए आंकड़ों के अनुसार हैं।
+        ```
 
 
 ## minIndicBERT
@@ -107,7 +91,10 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicBERT/minIndicBERT_sample_code.py
 * Model Traning Command (More details here => https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md )
 ```
-CUDA_VISIBLE_DEVICES=0 fairseq-train --fp16 $DATA_DIR --task masked_lm --criterion masked_lm  --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 --encoder-ffn-embed-dim 1024 --encoder-attention-heads 8 --sample-break-mode complete --tokens-per-sample $TOKENS_PER_SAMPLE --optimizer adam --adam-betas '(0.9,0.98)' --adam-eps 1e-6 --clip-norm 0.0 --lr-scheduler polynomial_decay --lr $PEAK_LR --warmup-updates $WARMUP_UPDATES --total-num-update $TOTAL_UPDATES --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 --max-sentences $MAX_SENTENCES --update-freq $UPDATE_FREQ --max-update $TOTAL_UPDATES --log-format simple --log-interval 1 --skip-invalid-size-inputs-valid-test
+CUDA_VISIBLE_DEVICES=0 fairseq-train --fp16 $DATA_DIR --task masked_lm --criterion masked_lm  --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 --encoder-ffn-embed-dim 
+1024 --encoder-attention-heads 8 --sample-break-mode complete --tokens-per-sample $TOKENS_PER_SAMPLE --optimizer adam --adam-betas '(0.9,0.98)' --adam-eps 1e-6 --clip-norm 0.0 --lr-
+scheduler polynomial_decay --lr $PEAK_LR --warmup-updates $WARMUP_UPDATES --total-num-update $TOTAL_UPDATES --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 --max-sentences 
+$MAX_SENTENCES --update-freq $UPDATE_FREQ --max-update $TOTAL_UPDATES --log-format simple --log-interval 1 --skip-invalid-size-inputs-valid-test
 ```
 
 ### Process to Finetune 
@@ -123,7 +110,12 @@ ROBERTA_PATH=/minIndicBERT/model/path/*.pt
 
 cd fairseq_installation_path
 
-CUDA_VISIBLE_DEVICES=0 python train.py /path/bin_data/ --restore-file $ROBERTA_PATH --max-positions 512 --max-sentences $MAX_SENTENCES  --max-tokens 32768 --task sentence_prediction --reset-optimizer --reset-dataloader --reset-meters --required-batch-size-multiple 1 --init-token 0 --separator-token 2 --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 --encoder-ffn-embed-dim 1024 --encoder-attention-heads 8 --criterion sentence_prediction --classification-head-name $HEAD_NAME --num-classes $NUM_CLASSES --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.1 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 --clip-norm 0.0 --lr-scheduler polynomial_decay --lr $LR --total-num-update $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 --max-epoch 16 --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric --find-unused-parameters  --update-freq 8 --skip-invalid-size-inputs-valid-test
+CUDA_VISIBLE_DEVICES=0 python train.py /path/bin_data/ --restore-file $ROBERTA_PATH --max-positions 512 --max-sentences $MAX_SENTENCES  --max-tokens 32768 --task sentence_prediction 
+--reset-optimizer --reset-dataloader --reset-meters --required-batch-size-multiple 1 --init-token 0 --separator-token 2 --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 
+--encoder-ffn-embed-dim 1024 --encoder-attention-heads 8 --criterion sentence_prediction --classification-head-name $HEAD_NAME --num-classes $NUM_CLASSES --dropout 0.1 --attention-
+dropout 0.1 --weight-decay 0.1 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 --clip-norm 0.0 --lr-scheduler polynomial_decay --lr $LR --total-num-update 
+$TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 --max-epoch 16 --best-checkpoint-metric accuracy 
+--maximize-best-checkpoint-metric --find-unused-parameters  --update-freq 8 --skip-invalid-size-inputs-valid-test
 ```
 
 ## minIndicLanguageDetector
