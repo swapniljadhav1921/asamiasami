@@ -21,7 +21,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 ## Machine Instances Used
 * aws T4 single gpu instance - 16gb gpu (for hosting apis)
 * gtx 1070 - 8gb gpu
-* Ubuntu 16.04
+* Ubuntu 16.04, tested on cuda 10.0
 
 ## Data
 * indicTranslation - Opus http://opus.nlpl.eu/ + augmented data
@@ -34,10 +34,11 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * For running on cpu few code changes are required
     * `.cpu()` => This is not required and should be removed
     * `model.cuda()` => This is not required and should be removed
-* Repo download size will be ~24gb. It includes all model files .pt & traning binaries(Not required but given for enthusiastic people to run for more epochs).
+* Repo download size will be ~18gb. It includes all model files `.pt` & some traning binaries(Not required but given for enthusiastic people to run for more epochs).
+* Most of the repo size due to `lfs` objects created. It takes time for decompression when you `git clone`. 
 
 ## indicTranslation
-* Trained at sentence level. Process => text -> split in sentences -> translation.
+* Trained at sentence level. Process in sample api code => text -> split in sentences -> translation.
 * English CASELESS text is used. It improves the model performance manyfold.
 * API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation
 * Hindi-2-English Translation Model
