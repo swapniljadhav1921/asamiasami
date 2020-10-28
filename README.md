@@ -99,6 +99,9 @@ $MAX_SENTENCES --update-freq $UPDATE_FREQ --max-update $TOTAL_UPDATES --log-form
 
 ### Process to Finetune 
 * More Details Here => https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md
+* Input Raw data for these models is tokenised text. SentencePiece is used for the same. So in case you are following above link for data preparation ... convert train,test,valid text files to tokenised-text files. 
+* More Info here => https://github.com/google/sentencepiece
+* Command to encode file => `spm_encode --model=<model_file> --output_format=piece < input.txt > output.txt`
 ```
 TOTAL_NUM_UPDATES=1000000
 WARMUP_UPDATES=5000
