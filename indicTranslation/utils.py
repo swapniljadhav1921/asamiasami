@@ -3,13 +3,11 @@ import torch
 from fairseq import checkpoint_utils, options, tasks, utils
 import sys, re
 import time
-from flask import Flask, render_template, request, jsonify
 import sentencepiece as spm
 from nltk.tokenize import sent_tokenize
 from indicnlp.tokenize import sentence_tokenize
 
 
-app = Flask(__name__)
 Batch = namedtuple('Batch', 'ids src_tokens src_lengths')
 Translation = namedtuple('Translation', 'src_str hypos pos_scores alignments')
 sp = spm.SentencePieceProcessor()
@@ -143,22 +141,9 @@ class Generator():
 
                 return hypo_str
 
-###################
-### Inputs Args ###
-###################
-data_token_path = sys.argv[3].strip()
-model_checkpoint = sys.argv[4].strip()
-sp_path = sys.argv[5].strip()
-srclang = sys.argv[6].strip()
 
-gen = Generator(data_token_path, model_checkpoint)
-sp.load(sp_path)
-
-
-@app.route('/get_translation', methods=['POST'])
-def get_translation():
-    request_info = request.json
-    ogtext = request_info["text"].strip()
+def get_translation(gen, sp, text, srclang):
+    ogtext = text.strip()
     original_text = ""+ogtext
     if srclang == "hi":
         if ogtext[-1] != "|":
@@ -167,12 +152,10 @@ def get_translation():
         if ogtext[-1] != "." and ogtext[-1] != "?" and ogtext[-1] != "!" and ogtext[-1] != "।":
             ogtext = ogtext + "."
     text = ""+ogtext
-    #print("Text : ", ogtext)
     mr_number_map = {'०': '0', '१':'1', '२':'2', '३':'3', '४':'4', '५':'5', '६':'6', '७':'7', '८':'8', '९':'9'}
     for mrnum, ennum in mr_number_map.items():
         text = text.replace(mrnum, ennum)
 
-    #textarr = re.split('?|!|.|\r|\n', text)
     if srclang == "en":
         textarr = sent_tokenize(text)
         ogtextarr = sent_tokenize(ogtext)
@@ -190,18 +173,11 @@ def get_translation():
                 text = text[:-1] + " |"
             if text[-1] != "|" and text[-1] != "?" and text[-1] != "!":
                 text = text + " |"
-        #print(textid, text)
         tokentext = " ".join(sp.encode_as_pieces(str(text).strip().lower()))
         transtext = [x.strip() for x in gen.generate(tokentext.strip()).split()]
         outtext = sp.decode_pieces(transtext)
         outtextfinal = outtextfinal + " " + outtext
         textfinal = textfinal + " " + ogtextarr[textid]
     outtextfinal = outtextfinal.replace(" | ", "|").replace(" . ", ".").replace(" ? ", "?").replace(" ! ", "!").strip()
-    response_json = {"text":original_text, "outtext":outtextfinal}
-    return jsonify(response_json)
+    return outtextfinal
 
-
-if __name__ == '__main__':
-    app_host = sys.argv[1].strip()
-    app_port = sys.argv[2].strip()
-    app.run(use_reloader = False, debug = True, host=app_host, port=app_port)
