@@ -1,4 +1,4 @@
-# NLP Models Made For Indian Languages
+# NLP Models For Indian Languages
 
 ### Demo APIs
 https://rapidapi.com/user/asamiasami2020
@@ -142,4 +142,8 @@ $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 -
 ## Pay something for my Chai-Pani if you like above models
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/paypalme/swapniljadhav1921)
 -->
+
+## indicSummarizer (Coming Soon ...)
+
+## indicNER (Coming Soon ...)
 
