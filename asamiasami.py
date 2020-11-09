@@ -7,7 +7,7 @@ from utils import get_translation, Generator
 
 
 class minTokenizer:
-    def __init__(self, model_path):
+    def __init__(self, model_path="./indicTranslation/sentencepiece.bpe.model"):
         self.sp = spm.SentencePieceProcessor()
         self.sp.load(model_path)
 
