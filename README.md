@@ -5,15 +5,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 ### Languages Supported
 'english', 'gujarati', 'nepali', 'malayalam', 'kannada', 'marathi', 'hindi', 'bangla', 'tamil', 'telugu', 'punjabi', 'urdu', 'oriya'
 
-## Requirements
-* Python >=3.6
-* torch >=1.4
-* sentencepiece >=0.1.83
-* fairseq (https://github.com/pytorch/fairseq#requirements-and-installation)
-* Flask >=1.0
-* gdown
-* nltk
-* indic-nlp-library
+
 
 ## Machine Instances Used
 * aws T4 single gpu instance - 16gb gpu
@@ -27,9 +19,42 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * minIndicNSFWDetector - free datasets available for slangs
 
 
-## Code
-```diff
-- currently issue with fairseq library version changes is being resolved
+## Installation
+
+### Requirements
+* Python >=3.6
+* torch >=1.4
+* sentencepiece >=0.1.83
+* Flask >=1.0
+* gdown
+* nltk
+```
+import nltk
+nltk.download('punkt')
+```
+* indic-nlp-library
+
+### Install Fairseq
+This particular commit of fairseq is the best compatible for this project. Later commits produces errors.
+```
+gdown https://drive.google.com/uc?id=19Dw1WMRKyDOBxzmvbU_Gc9WgdZuMVt_h
+tar -xzvf fairseq.tar.gz
+cd fairseq
+pip install --editable ./
+cd ..
+```
+
+### Install git LFS
+```
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
+git lfs install
+```
+
+### Install AsamiAsami
+```
+git clone https://github.com/swapniljadhav1921/asamiasami.git
+cd asamiasami
 ```
 
 For more details please check `asasmiasami.py` which has simple code interface.
