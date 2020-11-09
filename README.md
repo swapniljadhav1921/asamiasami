@@ -12,6 +12,8 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * fairseq (https://github.com/pytorch/fairseq#requirements-and-installation)
 * Flask >=1.0
 * gdown
+* nltk
+* indic-nlp-library
 
 ## Machine Instances Used
 * aws T4 single gpu instance - 16gb gpu
