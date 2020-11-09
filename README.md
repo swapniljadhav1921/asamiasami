@@ -26,7 +26,7 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 
 ## Code
 For more details please check `asasmiasami.py` which has simple code interface.
-You cam set `gpu` or `cpu` in class construction variable `run_option`. 
+You can set `gpu` or `cpu` in class construction variable `run_option`. 
 
 ## indicTranslation
 * Trained at sentence level. Process in sample api code => text -> split in sentences -> translation.
