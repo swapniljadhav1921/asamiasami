@@ -1,8 +1,5 @@
 # NLP Models Made For Indian Languages
 
-### Demo APIs
-https://rapidapi.com/user/asamiasami2020
-
 ### Github Main Repo
 https://github.com/swapniljadhav1921/asamiasami
 
@@ -17,9 +14,10 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * sentencepiece >=0.1.83
 * fairseq (https://github.com/pytorch/fairseq#requirements-and-installation)
 * Flask >=1.0
+* gdown
 
 ## Machine Instances Used
-* aws T4 single gpu instance - 16gb gpu (for hosting apis)
+* aws T4 single gpu instance - 16gb gpu
 * gtx 1070 - 8gb gpu
 * Ubuntu 16.04, tested on cuda 10.0
 
