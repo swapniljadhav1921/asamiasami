@@ -26,7 +26,12 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * minIndicLanguageDetector - reviews/comments web scrapped, used transliteration to augment data
 * minIndicNSFWDetector - free datasets available for slangs
 
+
 ## Code
+```diff
+- currently issue with fairseq library version changes is being resolved
+```
+
 For more details please check `asasmiasami.py` which has simple code interface.
 You can set `gpu` or `cpu` in class construction variable `run_option`. 
 
