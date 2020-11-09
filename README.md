@@ -27,22 +27,19 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * minIndicLanguageDetector - reviews/comments web scrapped, used transliteration to augment data
 * minIndicNSFWDetector - free datasets available for slangs
 
-## Note
-* It is assumed that gpu will be used while running any code shared in this repo.
-* For running on cpu few code changes are required
-    * `.cpu()` => This is not required and should be removed
-    * `model.cuda()` => This is not required and should be removed
-* Repo download size will be ~18gb. It includes all model files `.pt` & some traning binaries(Not required but given for enthusiastic people to run for more epochs).
-* Most of the repo size due to `lfs` objects created. It takes time for decompression when you `git clone`. 
+## Code
+For more details please check `asasmiasami.py` which has simple code interface.
 
 ## indicTranslation
 * Trained at sentence level. Process in sample api code => text -> split in sentences -> translation.
 * English CASELESS text is used. It improves the model performance manyfold.
-* API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation
 * Hindi-2-English Translation Model
-    * Model Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation/hi_en_t2t_v3
-    * Try out direct api here (same code as shared) => https://rapidapi.com/asamiasami2020/api/indictranslator-hindi-2-english/details
-    * Run code locally => `python indicTranslation_sample_code.py`
+    * Code Sample
+    ```
+    from asamiasami import Hi2EnTranslator
+    hi2EnObj = Hi2EnTranslator()
+    hi2EnObj.getTranslation("फर्स्ट क्लास क्रिकेट में उनके नाम 6 शतक और 10 अर्धशतक शामिल है")
+    ```
     * BLEU Score Benchmark on Tatoeba DataSet
         * indicTranslation : ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `49.07 [73.45, 55.02, 42.81, 33.51]`
         * Google : 47.44 [73.16, 53.63, 40.88, 31.58]
@@ -59,10 +56,13 @@ Google's Multilingual BERT is trained on Indian language's content having contri
         includes 6 centuries and 10 half-centuries to his name.
         ```
     
-* English-2-Hindi Translation Model
-    * Model Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/indicTranslation/en_hi_t2t_v3
-    * Try out direct api here (same code as shared) => https://rapidapi.com/asamiasami2020/api/indictranslator-english-2-hindi/details
-    * Run code locally => `python indicTranslation_sample_code.py`
+* English-2-Hindi Translation Model    
+    * Code Sample
+    ```
+    from asamiasami import En2HiTranslator
+    en2hiObj = En2HiTranslator()
+    en2hiObj.getTranslation("Over the last three months, the spread of the pandemic has shifted from cities")
+    ```
     * BLEU Score Benchmark on Tatoeba DataSet
         * indicTranslation : ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+)`28.82 [61.37, 38.43, 25.62, 17.71]`
         * Google : 23.51 [51.52, 29.38, 18.07, 11.16]
@@ -83,17 +83,18 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * RoBERTa model & Sentence Tokenizer trained with just 4 encoders on 12+ Indian language data
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
 * Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
-* API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicBERT
-* How to start API => `bash rerun.sh PORT_NUM`
-* Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert/details
-* Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicBERT/minIndicBERT_sample_code.py
-* Model Traning Command (More details here => https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md )
-```
-CUDA_VISIBLE_DEVICES=0 fairseq-train --fp16 $DATA_DIR --task masked_lm --criterion masked_lm  --arch roberta_base --encoder-layers 4 --encoder-embed-dim 512 --encoder-ffn-embed-dim 
-1024 --encoder-attention-heads 8 --sample-break-mode complete --tokens-per-sample $TOKENS_PER_SAMPLE --optimizer adam --adam-betas '(0.9,0.98)' --adam-eps 1e-6 --clip-norm 0.0 --lr-
-scheduler polynomial_decay --lr $PEAK_LR --warmup-updates $WARMUP_UPDATES --total-num-update $TOTAL_UPDATES --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 --max-sentences 
-$MAX_SENTENCES --update-freq $UPDATE_FREQ --max-update $TOTAL_UPDATES --log-format simple --log-interval 1 --skip-invalid-size-inputs-valid-test
-```
+* Code Sample For Vector Generation
+    ```
+    from asamiasami import minIndicBERT
+    model = minIndicBERT()
+    model.getVector("Some Text For Which Vector To Be Generated")
+    ```
+* Code Sample For Token Generation
+    ```
+    from asamiasami import minTokenizer
+    model = minTokenizer("./indicTranslation/sentencepiece.bpe.model")
+    model.getTokens("Sample text to get some tokens")
+    ```
 
 ### Process to Finetune 
 * More Details Here => https://github.com/pytorch/fairseq/blob/master/examples/roberta/README.pretraining.md
@@ -122,24 +123,22 @@ $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 -
 ## minIndicLanguageDetector
 * RoBERTa model finetuned over minIndicBERT base model to detect language of a given text
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
-* API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicLanguageDetector
-* How to start API => `bash rerun.sh PORT_NUM`
-* Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert-language-detection/details
-* Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicLanguageDetector/minIndicBERT_Language_detection_sample_code.py
-
+* Code Sample
+    ```
+    from asamiasami import minIndicLanguageDetector
+    model = minIndicLanguageDetector()
+    model.getLanguage("Sample Text For Which Language To Be Detected")
+    ```
 
 ## minIndicNSFWDetector 
 * RoBERTa model finetuned over minIndicBERT base model to detect if given text is safe or not-safe for work.
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
-* API Location => https://github.com/swapniljadhav1921/asamiasami/tree/main/minIndicNSFWDetector
-* How to start API => `bash rerun.sh PORT_NUM`
-* Live api can be tested here => https://rapidapi.com/asamiasami2020/api/indicbert-nsfwdetection/details
-* Sample Code Location => https://github.com/swapniljadhav1921/asamiasami/blob/main/minIndicNSFWDetector/minIndicBERT_NSFW_detection_sample_code.py
-
-<!--
-## Pay something for my Chai-Pani if you like above models
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/paypalme/swapniljadhav1921)
--->
+* Code Sample
+    ```
+    from asamiasami import minIndicNSFWDetector
+    model = minIndicNSFWDetector()
+    model.getNSFWClass("Text for which safe unsafe to be detected")
+    ```
 
 ## indicSummarizer (Coming Soon ...)
 
