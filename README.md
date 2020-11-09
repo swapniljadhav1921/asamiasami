@@ -12,6 +12,8 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * fairseq (https://github.com/pytorch/fairseq#requirements-and-installation)
 * Flask >=1.0
 * gdown
+* nltk
+* indic-nlp-library
 
 ## Machine Instances Used
 * aws T4 single gpu instance - 16gb gpu
@@ -24,7 +26,12 @@ Google's Multilingual BERT is trained on Indian language's content having contri
 * minIndicLanguageDetector - reviews/comments web scrapped, used transliteration to augment data
 * minIndicNSFWDetector - free datasets available for slangs
 
+
 ## Code
+```diff
+- currently issue with fairseq library version changes is being resolved
+```
+
 For more details please check `asasmiasami.py` which has simple code interface.
 You can set `gpu` or `cpu` in class construction variable `run_option`. 
 
