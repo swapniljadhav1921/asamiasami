@@ -35,7 +35,7 @@ nltk.download('punkt')
 * indic-nlp-library
 
 ### Install Fairseq
-This particular commit of fairseq is the best compatible for this project. Later commits produces errors.
+This particular commit of fairseq is the best compatible for this project. Later commits produce errors.
 ```
 gdown https://drive.google.com/uc?id=19Dw1WMRKyDOBxzmvbU_Gc9WgdZuMVt_h
 tar -xzvf fairseq.tar.gz
@@ -116,7 +116,7 @@ You can set `gpu` or `cpu` in class construction variable `run_option`.
 * Code Sample For Vector Generation
     ```
     from asamiasami import minIndicBERT
-    model = minIndicBERT()
+    model = minIndicBERT(run_option="gpu")
     model.getVector("Some Text For Which Vector To Be Generated")
     ```
 * Code Sample For Token Generation
@@ -156,7 +156,7 @@ $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 -
 * Code Sample
     ```
     from asamiasami import minIndicLanguageDetector
-    model = minIndicLanguageDetector()
+    model = minIndicLanguageDetector(run_option="gpu")
     model.getLanguage("Sample Text For Which Language To Be Detected")
     ```
 
@@ -166,11 +166,9 @@ $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 -
 * Code Sample
     ```
     from asamiasami import minIndicNSFWDetector
-    model = minIndicNSFWDetector()
+    model = minIndicNSFWDetector(run_option="gpu")
     model.getNSFWClass("Text for which safe unsafe to be detected")
     ```
 
-## indicSummarizer (Coming Soon ...)
 
-## indicNER (Coming Soon ...)
 
