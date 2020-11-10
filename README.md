@@ -2,10 +2,6 @@
 
 Google's Multilingual BERT is trained on Indian language's content having contribution <10%. Similarly, for GPT-3 which is the latest in the bunch has <7% content in other than English language. Over the years through experiments we observed that more the data & accurate the data, better the model ... irrespective of how big the model is. Original attention model by Vaswani with more data & hyper-parameter tuning held up very well against state-of-the-art models like BERT, GPT-2. minIndicBERT is the results of the same experimentation and trained only on Indian Languages specifically.
 
-### Languages Supported
-'english', 'gujarati', 'nepali', 'malayalam', 'kannada', 'marathi', 'hindi', 'bangla', 'tamil', 'telugu', 'punjabi', 'urdu', 'oriya'
-
-
 
 ## Machine Instances Used
 * aws T4 single gpu instance - 16gb gpu
@@ -113,6 +109,7 @@ You can set `gpu` or `cpu` in class construction variable `run_option`.
 * RoBERTa model & Sentence Tokenizer trained with just 4 encoders on 12+ Indian language data
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
 * Data Source - Scrapped Websites, Wikipedia, Opus http://opus.nlpl.eu/
+* Languages Supported : 'english', 'gujarati', 'nepali', 'malayalam', 'kannada', 'marathi', 'hindi', 'bangla', 'tamil', 'telugu', 'punjabi', 'urdu', 'oriya'
 * Code Sample For Vector Generation
     ```
     from asamiasami import minIndicBERT
@@ -153,6 +150,7 @@ $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 -
 ## minIndicLanguageDetector
 * RoBERTa model finetuned over minIndicBERT base model to detect language of a given text
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
+* Languages Supported : 'english', 'gujarati', 'nepali', 'malayalam', 'kannada', 'marathi', 'hindi', 'bangla', 'tamil', 'telugu', 'punjabi', 'urdu', 'oriya'
 * Code Sample
     ```
     from asamiasami import minIndicLanguageDetector
@@ -163,6 +161,7 @@ $TOTAL_NUM_UPDATES --warmup-updates $WARMUP_UPDATES --fp16 --fp16-init-scale 4 -
 ## minIndicNSFWDetector 
 * RoBERTa model finetuned over minIndicBERT base model to detect if given text is safe or not-safe for work.
 * Input needs 512 tokens, sentence tokenizer has ~66k dictionary of tokens across 12+languages & transliterated text.
+* Languages Supported : 'english', 'gujarati', 'nepali', 'malayalam', 'kannada', 'marathi', 'hindi', 'bangla', 'tamil', 'telugu', 'punjabi', 'urdu', 'oriya'
 * Code Sample
     ```
     from asamiasami import minIndicNSFWDetector
