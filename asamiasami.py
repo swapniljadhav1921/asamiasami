@@ -69,9 +69,14 @@ class minIndicLanguageDetector:
 
 
 class minIndicNSFWDetector:
-    def __init__(self, model_folder="./minIndicNSFWDetector", model_name="minIndicTextNSFW.pt", run_option="gpu"):
+    def __init__(self, model_folder="./minIndicNSFWDetector", model_name="minIndicTextNSFW.pt", run_option="gpu", nsfw_phrase_file="./minIndicNSFWDetector/NSFWFinal.txt"):
         self.model_path = "%s/%s" % (model_folder, model_name)
         self.run_option = run_option
+        self.nsfwset = set()
+        fr = open(nsfw_phrase_file, 'r')
+        for line in fr:
+            self.nsfwset.add(line.strip().lower())
+        fr.close()
         if not os.path.exists(self.model_path):
             url = "https://drive.google.com/uc?id=1uukQSEIKOdMQ2ydc_nerygxN5mmDyi5Y"
             gdown.download(url, self.model_path, quiet=False)
@@ -81,6 +86,39 @@ class minIndicNSFWDetector:
             self.model.cuda()
         self.label_fn = lambda label: self.model.task.label_dictionary.string([label + self.model.task.label_dictionary.nspecial])
         self.nsfw_arr = ['sfw', 'nsfw']
+
+    def getNsfwPhrases(self, text):
+        text = text.lower().strip()
+        words = text.split()
+        phrase_set = set()
+        irange = np.min([6, len(words)])
+        for i in range(1,irange, 1):
+            for j in range(len(words)):
+                itext = " ".join(words[j:j+i]).strip()
+                iitext = "".join(words[j:j+i]).strip()
+                if itext is not None and len(itext)>2:
+                    phrase_set.add(itext)
+                if iitext is not None and len(iitext)>2:
+                    phrase_set.add(iitext)
+        nw_list = []
+        for nw in phrase_set:
+            if nw in self.nsfwset:
+                nw_list.append(nw)
+
+        soft_phrase_set = set()
+        for i in range(3, 30):
+            for j in range(len(text)):
+                curr_text = text[j:j+i]
+                if len(text[j:j+i].strip())>2:
+                    soft_phrase_set.add(text[j:j+i].strip())
+                if len(text[j:j+i].replace(" ","").strip())>2:
+                    soft_phrase_set.add(text[j:j+i].replace(" ","").strip())
+        soft_nw_list = []
+        for nw in soft_phrase_set:
+            if nw in self.nsfwset:
+                soft_nw_list.append(nw)
+        return {"hard_match": nw_list, "soft_match": soft_nw_list}
+
 
     def getNSFWClass(self, text):
         tokens = self.model.encode(text)
@@ -96,7 +134,9 @@ class minIndicNSFWDetector:
         pred_sum = np.sum(pred_arr)
         pred_arr = [float("{:.4f}".format(x*1.0/pred_sum)) for x in pred_arr]
         possible_classes = dict(zip(self.nsfw_arr, pred_arr))
-        return possible_classes
+        nsfw_phrase_match = self.getNsfwPhrases(text)
+        nsfw_phrase_match['model_output'] = possible_classes
+        return nsfw_phrase_match
 
 
 class En2HiTranslator:
