@@ -47,6 +47,20 @@ sudo apt-get install git-lfs
 git lfs install
 ```
 
+### Issues with LFS
+Due to various issues with LFS files initially added to LFS later removed .. created unstable file versions which are currently present in repo.
+
+File sizes are big and github with free version has size limitations.
+
+I propose to use files from this location -> https://drive.google.com/drive/folders/18x_vGGa5v3jT-Zx73u0eKFfDGyw9M_aB?usp=sharing
+
+Same folder structure ... please replace git files with these files ... and then LFS is not required.
+
+Please update if found any issue here -> https://github.com/swapniljadhav1921/asamiasami/issues/2
+
+Very non efficient way .. but will make it more usable later.
+
+
 ### Install AsamiAsami
 ```
 git clone https://github.com/swapniljadhav1921/asamiasami.git
